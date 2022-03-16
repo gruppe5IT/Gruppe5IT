@@ -53,7 +53,7 @@ article {
 main {
     position: absolute;
     display: grid;
-    grid-template-rows: 15% 5% 80%;
+    grid-template-rows: 30% 5% 80%;
     grid-auto-columns: 20% 80%;
     grid-template-areas:
                              'header header'
