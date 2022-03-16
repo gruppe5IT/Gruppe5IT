@@ -118,7 +118,7 @@ button:active {
     position: absolute;
     overflow: hidden;
     left:30%;
-    top:-20px;
+    top:0px;
 
 }
 #infoboks{
