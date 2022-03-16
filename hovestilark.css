@@ -23,7 +23,6 @@ body {
 
 
 
-
 header {
     grid-area:header;
     text-align: center;
@@ -118,7 +117,7 @@ button:active {
     position: absolute;
     overflow: hidden;
     left:30%;
-    top:0px;
+    top:-20px;
 
 }
 #infoboks{
