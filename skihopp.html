@@ -6,30 +6,233 @@
     <link rel="stylesheet" href="hovestilark.css">
 </head>
 <body>
-
-    <div id="hoved">
+<div id="hoved">
     <header>
- <div class="header">
+        <div class="header">
 
-    </div>
-    <h1 id="overskrift"> Vinter-OL</h1>    
-    <img id="bilde" src="OL.png" alt="6 ulike figurer av poltikere" width="270" height="180" >
-       
-       
+        </div>
+        <h1 id="overskrift"> Vinter-OL</h1>
+        <img id="bilde" src="OL.png" alt="6 ulike figurer av poltikere" width="270" height="180">
+
     </header>
 
     <nav>
 
-         <a href="index.html">Hjem</a>
-        <a href="">Skiskyting</a>
-        <a href="">Langrenn</a>
+        <a href="index.html">Hjem</a>
+        <a href="skiskyting.html">Skiskyting</a>
+        <a href="langrenn2.html">Langrenn</a>
         <a href="skihopp.html">Skihopping</a>
         <a href="">Gruppearbeidet</a>
 
     </nav>
 
+<article id="info">
+    <h1>Vinter OL - Skihopping</h1>
+    <br>
+    <p>Skihopping er en vinteridrett som blir utført i vinter ol. Utøverene står med ski på beina
+     på toppen av en bakke, og prøver å sveve så langt fram de klarer.
+    Det var Marius Lindvik fra Norge som fikk gull, Ryōyū Kobayashi fra Japan som fikk sølv og
+    Karl Geiger fra Tyskland som fikk bronse</p>
+</article>
+
+    <header id="overskriftspill">
+        <h1>Huskespill</h1>
+    </header>
+
+    <section class="main">
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+        <div class="box play"></div>
+
+        <div id="state">
+            <span id="time">0</span>
+            <span id="score">0</span>
+        </div>
+    </section>
+
+    <section id="pre" class="">
+        <div id="themes">
+            <h2>Start spillet!</h2>
+            <p id="deltakere" class="themes" title="Deltakere">Deltakere</p>
+        </div>
+    </section>
+
+    <section id="post" class="hidden">
+        <div>
+            <h2>Bra jobba!</h2>
+            <p id="final"></p>
+            <br>
+            <p>
+                <a id="again">Spill igjen!</a>
+            </p>
+        </div>
+    </section>
 </div>
 
-    
+<script>
+
+    var library = {
+        deltakere: [
+            'skihopp.jpg',
+            'skihopp.jpg',
+            'skihopp1.jpg',
+            'skihopp1.jpg',
+            'skihopp2.jpg',
+            'skihopp2.jpg',
+            'skihopp3.jpg',
+            'skihopp3.jpg',
+            'skihopp4.jpg',
+            'skihopp4.jpg',
+            'skihopp5.jpg',
+            'skihopp5.jpg',
+            'skihopp6.jpg',
+            'skihopp6.jpg',
+            'skihopp7.jpg',
+            'skihopp7.jpg',
+            'skihopp8.jpg',
+            'skihopp8.jpg',
+            'skihopp9.jpg',
+            'skihopp9.jpg',
+        ]
+    }
+
+    var images = [];
+    var tempElt1 = "";
+    var tempElt2 = "";
+    var click = -1;
+    var win = 0;
+    var score = 0;
+    var time = 0;
+
+    var preElt = document.querySelector("#pre");
+    var themesElt = document.querySelector("#themes");
+    var boxElts = document.getElementsByClassName("box");
+    var mainElt = document.querySelector(".main");
+    var timeElt = document.querySelector("#time");
+    var scoreElt = document.querySelector("#score");
+    var postElt = document.querySelector("#post");
+    var finalElt = document.querySelector("#final");
+    var againElt = document.querySelector("#again");
+
+    // initiate the game with chosen theme
+    themesElt.addEventListener("click", function (e) {
+        if (e.target.classList.contains("themes")) {
+            activateTheme(e.target.id);
+            preElt.classList.add("hidden");
+        }
+    });
+
+    function activateTheme(theme) {
+        // insert theme in images array
+        for (let i = 0; i < 20; i++) {
+            images.push(library[theme][i]);
+        }
+        // insert images in memory game
+        for (let i = 0; i < 20; i++) {
+            var rand = Math.floor(Math.random() * (images.length - 1));
+            boxElts[i].innerHTML = "<img src='" + images[rand] + "' alt='image' class='hidden'>";
+            images.splice(rand, 1);
+        }
+    }
+
+    // Handle the play
+    mainElt.addEventListener("click", gameLogic);
+
+    function gameLogic(e) {
+        // make sure the box is playable
+        if (e.target.classList.contains("play")) {
+            e.target.firstChild.classList.remove("hidden");
+            // first of two click
+            if (click < 1) {
+                tempElt1 = e.target;
+                // timer
+                if (click === -1) {
+                    timer = setInterval(function () {
+                        time++;
+                        timeElt.innerHTML = time;
+                    }, 1000);
+                }
+                click = 1;
+            }
+
+            // second click
+            else if (e.target !== tempElt1) {
+                tempElt2 = e.target;
+
+                // different images
+                if (tempElt1.firstChild.src !== tempElt2.firstChild.src) {
+                    mainElt.removeEventListener("click", gameLogic);
+                    setTimeout(function () {
+                        tempElt1.firstChild.classList.add("hidden");
+                        tempElt2.firstChild.classList.add("hidden");
+                        mainElt.addEventListener("click", gameLogic);
+                    }, 400);
+                    if (score > 0) {
+                        score -= 2;
+                    }
+                    scoreElt.innerHTML = score;
+                }
+
+                // same images
+                else {
+                    score += 10;
+                    win += 2;
+                    tempElt1.firstChild.classList.add("outlined");
+                    tempElt2.firstChild.classList.add("outlined");
+                    tempElt1.classList.remove("play");
+                    tempElt2.classList.remove("play");
+                    scoreElt.innerHTML = score;
+
+                    // game won
+                    if (win === 20) {
+                        clearInterval(timer);
+                        finalElt.innerHTML = "Du vant " + score + " poeng <br> i " + time + " sekunder";
+                        postElt.classList.remove("hidden");
+                    }
+                }
+                click = 0;
+            }
+        }
+    }
+
+    againElt.addEventListener("click", resetGame);
+
+    function resetGame() {
+        // reset game
+        tempElt1 = "";
+        tempElt2 = "";
+        click = -1;
+        win = 0;
+        score = 0;
+        time = 0;
+        postElt.classList.add("hidden");
+        preElt.classList.remove("hidden");
+        for (let i = 0; i < 20; i++) {
+            boxElts[i].classList.add("play");
+            boxElts[i].firstChild.classList.add("hidden");
+        }
+        timeElt.textContent = time;
+        scoreElt.textContent = score;
+    }
+
+</script>
+
 </body>
 </html>
