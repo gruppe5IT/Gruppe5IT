@@ -130,4 +130,26 @@ button:active {
     background: linear-gradient(rgba(0, 0, 2, 0.2), transparent);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
+#gull{
+    background-color: gold;
+}
+#solv{
+    background-color: silver;
+}
+#bronse{
+    background-color: sandybrown;
+}
+#langrenn{
+    text-align: center;
+    color: #2A5075;
+    text-shadow: 2px 2px 5px lightblue;
+}
+#hoved2{
+    width: 60%;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white;
+    border: 1px solid #cccccc;
+
+}
 
