@@ -66,6 +66,12 @@ main {
     height:100%;
     left:2.5%;
 }
+
+#vinter_ol_markus {
+    grid-area:vinter_ol_markus;
+    display:flex;
+    flex-flow: row wrap;
+    
 a {
     color:black
 }
