@@ -161,7 +161,7 @@
     document.querySelector("#gjett").onclick=kontrollere;
     function kontrollere() {
         antallTrykk++;
-        let infoEl = document.querySelector("p");
+        let infoEl = document.querySelector("#info");
         if (antallTrykk===6) {
             let avsnitt2El = document.querySelector(".avsnitt2");
             avsnitt2El.innerHTML = "Spillet er over!"
