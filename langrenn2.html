@@ -147,6 +147,7 @@
 
 </body>
 <script>
+    //lager en array med løsningsord
     var losning=[]
     losning[0]="j" 
     losning[1]="o"
@@ -154,15 +155,18 @@
     losning[3]="a"
     losning[4]="u"
     losning[5]="g"
+    //definerer antall ganger til null. Lager en tom array som heter rikitgebokstaver. 
     var antallGanger=0;
     let riktigeBokstaver=[]
     var antallTrykk=0;
 
     var gjettedeBokstaver=[]
     document.querySelector("#gjett").onclick=kontrollere;
+    //når bruker trykker på knappen kjører funksjonen
     function kontrollere() {
         antallTrykk++;
         let infoEl = document.querySelector("#info");
+        //hvis personen ar gjettet 6 ganger er spillet over. 
         if (antallTrykk===6) {
             let avsnitt2El = document.querySelector(".avsnitt2");
             avsnitt2El.innerHTML = "Spillet er over! Riktig svar var Johaug."
@@ -171,13 +175,17 @@
         antallGanger++;
         document.getElementById(antallGanger).style.color="red";
         let gjettetBokstav=document.getElementById("tittel").value;
+        //flytter gjettede bokstaver til array gjettet bokstav. 
         gjettedeBokstaver.push(gjettetBokstav);
+        //sjekker alle verdiene i løsningsarrayen 
         for (var i = 0; i < losning.length; i++)
+            //hvis gjettet bokstav er riktig skal bokstaven bli mørke grønn. 
             if (gjettetBokstav===losning[i]) {
                 riktigeBokstaver[i]=gjettetBokstav;
                 document.getElementById(antallGanger).style.color="green";
 
             }
+        //endrer info elementet med tekst. 
         infoEl.innerHTML = "Løsningsordet har 6 bokstaver.  " +
             "Du har gjettet " + antallTrykk + " bokstaver som er: "+gjettedeBokstaver.sort().join("")+"<br>"+
             "Riktige bokstaver så langt: "+riktigeBokstaver.join("")
