@@ -23,13 +23,11 @@ body {
 
 
 
-
 header {
     grid-area:header;
     text-align: center;
     border-radius: 10px;
     padding: 40px;
-    overflow:hidden;
     position: relative;
     margin: 20px;
 }
