@@ -454,3 +454,13 @@ button:active {
     border-radius: 5px;
     padding: 10px;
 }
+
+
+#tabellSkiskyttere{
+    background-color: white;
+    margin: 30px;
+    border: solid black;
+    border-radius: 5px;
+    padding: 10px;
+    alignment: center;
+}
