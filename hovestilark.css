@@ -446,3 +446,11 @@ button:active {
     border-radius: 5px;
     padding: 10px;
 }
+
+#kjappInfo{
+    background-color: white;
+    margin: 20px;
+    border: solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
