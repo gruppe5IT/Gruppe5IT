@@ -437,3 +437,12 @@ button:active {
     color: darkslategrey;
 
 }
+
+
+#infoSkiskyting{
+    background-color: cadetblue;
+    margin: 20px;
+    border: solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
